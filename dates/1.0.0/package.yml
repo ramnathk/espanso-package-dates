@@ -1,0 +1,39 @@
+### Date Convenience package
+
+matches:
+  ## Small d for locale specific date format
+  ## gdate requires 'coreutils' installed (via homebrew, is easy)
+  - regex: ";d(?P<offs>-?\\d+)"
+    replace: "{{output}}"
+    word: true
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: 'gdate -d +"${ESPANSO_OFFS} day" +%x'
+
+  ## Capital D for different date format
+  - regex: ";D(?P<offs>-?\\d+)(?P<trailing>[^0-9])"
+    replace: "{{output}}"
+    word: true
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: 'gdate -d +"${ESPANSO_OFFS} day" +%v'
+
+  - regex: ";l(?P<day>mon|tue|wed|thu|fri|sat|sun)"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: 'gdate -d "last {{day}}" +%x'
+
+  - regex: ";n(?P<day>mon|tue|wed|thu|fri|sat|sun)"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: 'gdate -d "next {{day}}" +%x'

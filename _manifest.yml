@@ -1,0 +1,5 @@
+name: dates
+titel: Espanso Package for Dates on a Mac
+description: Expansions for popular dates used. Requires gdate from macports.
+version: 1.0.0
+author: Karthikeyan Ramnath
